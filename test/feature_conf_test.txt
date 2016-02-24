@@ -1,0 +1,23 @@
+aid, action, device_id, user_id, device_type, os, app_version, pixel_width, pixel_height, os_version, ip, ctime
+# 自定义代码的文件
+custom_code_module=data_serv.feature_framework.custom_feature_methods
+
+# label定义
+label_name=click; depend=action; method=ClickOrShown;
+
+# 开始特征定义
+feature_name=aid; slot=u; depend=aid; method=Direct;
+feature_name=did; slot=u; depend=device_id; method=Direct;
+feature_name=os;  slot=u; depend=os; method=Direct;
+feature_name=osv; slot=u; depend=os_version; method=Direct;
+feature_name=pw;  slot=u; depend=pixel_width; method=Direct;
+feature_name=ph;  slot=u; depend=pixel_height; method=Direct;
+#feature_name=ip;  slot=u; depend=ip; method=Direct;
+feature_name=ctime; slot=u; depend=ctime; method=TimeParser;
+
+feature_name=arti; slot=a; depend=aid; method=ArticleFeature;
+
+feature_name=arti_dev; depend=aid, device_id; method=Combine;
+feature_name=arti_os;  depend=aid, os, os_version; method=Combine;
+feature_name=arti_ph;  depend=aid, pixel_width; method=Combine;
+feature_name=arti_pw;  depend=aid, pixel_height; method=Combine;
